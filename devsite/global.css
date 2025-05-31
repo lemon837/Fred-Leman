@@ -1,0 +1,43 @@
+body {
+    background-color: var(--primary);
+    color: black;
+}
+
+header {
+    background-color: var(--secondary);
+    font-family: "Vergilia", sans-serif;
+    color: white;
+}
+
+#intro {
+    background-color: var(--tertiary);
+}
+
+.nav-link, .navbar-brand {
+    color: white;
+}
+
+.scroll-container {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.pane {
+    display: inline-block;
+    vertical-align: top;
+    width: 300px;
+    height: 200px;
+    margin-right: 1;
+    border-radius: 1;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
+
+.pane h5 {
+    margin-bottom: 0.5;
+}
+
+:root {
+    --primary: #b0b0b0;
+    --secondary: #4f4f4f;
+    --tertiary: #8f8f91;
+}
