@@ -1,2 +1,0 @@
-# devsite
-Personal website
