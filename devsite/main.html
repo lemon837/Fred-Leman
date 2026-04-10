@@ -1,96 +1,816 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Fred Leman</title>
-      <meta charset="utf-8"/>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
-        <link
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-          rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-          crossorigin="anonymous"
-        />
-        <link rel="stylesheet" href="global.css">
-  </head>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fred Leman — Graduate Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <body>
-    <header>
-      <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-          <a class="navbar-brand ms-2" href="#">Fred Leman</a>
-            <ul class="navbar-nav me-auto ms-1 mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Github</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">LinkedIn</a>
-              </li>
-            </ul>
-        </div>
-      </nav>
-    </header>
+  :root {
+    --cream: #FAF8F3;
+    --warm-white: #FFFFFF;
+    --ink: #1C1A17;
+    --ink-light: #5C574F;
+    --ink-lighter: #9C9690;
+    --accent: #2D6A4F;
+    --accent-light: #E8F4EE;
+    --accent-hover: #1E4D38;
+    --border: rgba(28,26,23,0.10);
+    --border-hover: rgba(28,26,23,0.22);
+    --green: #3B6D11;
+    --green-bg: #EAF3DE;
+    --blue: #185FA5;
+    --blue-bg: #E6F1FB;
+    --purple: #534AB7;
+    --purple-bg: #EEEDFE;
+  }
 
-    <main>
-      <h4 class="m-4">Cool JavaScript Thing</h4>
-      <div id="thing" class="container-xxl m-3 p-3 rounded-3">
-        Here it is, the cool and impressive JavaScript thing. Also, change the colours to be more professional and clean.
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* Nav */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250,248,243,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+
+  .nav-logo {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--ink-light);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  /* Hero */
+  .hero {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 7rem 2rem 5rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1.5px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: 'Lora', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-bio {
+    font-size: 1.05rem;
+    color: var(--ink-light);
+    max-width: 480px;
+    line-height: 1.75;
+    margin-bottom: 2rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--cream);
+  }
+
+  .btn-primary:hover {
+    background: var(--accent);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid var(--border-hover);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--ink);
+    background: rgba(28,26,23,0.04);
+  }
+
+  .hero-avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-light) 0%, #f0e0d4 100%);
+    border: 3px solid var(--warm-white);
+    box-shadow: 0 8px 32px rgba(28,26,23,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Lora', serif;
+    font-size: 2.8rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    flex-shrink: 0;
+  }
+
+  /* Divider */
+  .divider {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+
+  /* Section */
+  section {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 2.5rem;
+  }
+
+  h2 {
+    font-family: 'Lora', serif;
+    font-size: 1.65rem;
+    font-weight: 600;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+
+  .section-link {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: opacity 0.2s;
+  }
+
+  .section-link:hover { opacity: 0.7; }
+
+  /* Skills */
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .skill-tag {
+    font-size: 0.8rem;
+    font-weight: 400;
+    padding: 5px 13px;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    color: var(--ink-light);
+    background: var(--warm-white);
+    transition: all 0.2s;
+  }
+
+  .skill-tag:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-light);
+  }
+
+  /* Projects grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .project-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    transition: all 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .project-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(28,26,23,0.09);
+  }
+
+  .project-card:hover::before { opacity: 1; }
+
+  .project-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .project-name {
+    font-family: 'Lora', serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .project-arrow {
+    color: var(--ink-lighter);
+    font-size: 1rem;
+    transition: transform 0.2s, color 0.2s;
+    flex-shrink: 0;
+  }
+
+  .project-card:hover .project-arrow {
+    transform: translate(2px, -2px);
+    color: var(--accent);
+  }
+
+  .project-desc {
+    font-size: 0.875rem;
+    color: var(--ink-light);
+    line-height: 1.65;
+    flex: 1;
+  }
+
+  .project-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .lang-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--ink-light);
+  }
+
+  .lang-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .star-count {
+    font-size: 0.75rem;
+    color: var(--ink-lighter);
+    margin-left: auto;
+  }
+
+  /* Loading state */
+  .loading-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .skeleton-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    min-height: 150px;
+  }
+
+  .skeleton {
+    background: linear-gradient(90deg, #f0ece4 25%, #e6e0d6 50%, #f0ece4 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: 6px;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* About section */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .info-card {
+    background: var(--warm-white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+  }
+
+  .info-card h3 {
+    font-family: 'Lora', serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ink-lighter);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 0.75rem;
+  }
+
+  .info-card p {
+    font-size: 0.9rem;
+    color: var(--ink-light);
+    line-height: 1.7;
+  }
+
+  .info-card a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .info-card a:hover { text-decoration: underline; }
+
+  .status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #3B6D11;
+    margin-right: 6px;
+    animation: pulse-green 2s infinite;
+  }
+
+  @keyframes pulse-green {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  /* Footer */
+  footer {
+    border-top: 1px solid var(--border);
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-left {
+    font-size: 0.82rem;
+    color: var(--ink-lighter);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .footer-links a {
+    font-size: 0.82rem;
+    color: var(--ink-lighter);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--ink); }
+
+  /* Fade in animation */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero { animation: fadeUp 0.6s ease both; }
+  section { animation: fadeUp 0.7s ease both; animation-delay: 0.1s; }
+
+  /* Scroll indicator */
+  .scroll-indicator {
+    position: fixed;
+    left: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .scroll-indicator.visible { opacity: 1; }
+
+  .scroll-track {
+    width: 1.5px;
+    height: 100px;
+    background: rgba(28,26,23,0.12);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .scroll-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+    transition: height 0.1s linear;
+    height: 0%;
+  }
+
+  .scroll-label {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-lighter);
+    transition: color 0.3s, opacity 0.3s;
+    user-select: none;
+  }
+
+  .scroll-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    transition: transform 0.3s;
+  }
+
+  .scroll-indicator.visible .scroll-dot {
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.6; }
+  }
+
+  @media (max-width: 900px) {
+    .scroll-indicator { display: none; }
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      grid-template-columns: 1fr;
+      padding-top: 4rem;
+    }
+    .hero-avatar { display: none; }
+    .about-grid { grid-template-columns: 1fr; }
+    .section-header { flex-direction: column; gap: 0.5rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Scroll indicator -->
+<div class="scroll-indicator" id="scrollIndicator">
+  <span class="scroll-label" id="scrollLabel">Intro</span>
+  <div class="scroll-track">
+    <div class="scroll-fill" id="scrollFill"></div>
+  </div>
+  <div class="scroll-dot"></div>
+</div>
+
+<nav>
+  <a href="#" class="nav-logo">FL</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="https://github.com/lemon837" target="_blank">GitHub ↗</a></li>
+    <li><a href="https://www.linkedin.com/in/fred-leman-1284372bb" target="_blank">LinkedIn ↗</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<div class="hero" id="hero">
+  <div>
+    <div class="hero-tag">Available for opportunities</div>
+    <h1>Fred<br><em>Leman.</em></h1>
+    <p class="hero-bio">Graduate Software Engineer who loves building clean, thoughtful software (with lots of comments!).</p>
+    <div class="hero-actions">
+      <a href="https://github.com/lemon837" target="_blank" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="mailto:fredleman8@gmail.com" class="btn btn-secondary">Get in touch</a>
+      <a href="https://www.linkedin.com/in/fred-leman-1284372bb" target="_blank" class="btn btn-secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+  <div class="hero-avatar">FL</div>
+</div>
+
+<hr class="divider">
+
+<!-- Projects -->
+<section id="projects">
+  <div class="section-header">
+    <h2>Projects</h2>
+    <a href="https://github.com/lemon837?tab=repositories" target="_blank" class="section-link">All repositories ↗</a>
+  </div>
+  <div id="projects-container" class="loading-grid">
+    <div class="skeleton-card">
+      <div class="skeleton" style="height:18px;width:60%"></div>
+      <div class="skeleton" style="height:13px;width:90%"></div>
+      <div class="skeleton" style="height:13px;width:75%"></div>
+    </div>
+    <div class="skeleton-card">
+      <div class="skeleton" style="height:18px;width:55%"></div>
+      <div class="skeleton" style="height:13px;width:85%"></div>
+      <div class="skeleton" style="height:13px;width:70%"></div>
+    </div>
+    <div class="skeleton-card">
+      <div class="skeleton" style="height:18px;width:65%"></div>
+      <div class="skeleton" style="height:13px;width:80%"></div>
+      <div class="skeleton" style="height:13px;width:60%"></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- Skills -->
+<section id="skills">
+  <div class="section-header">
+    <h2>Skills & tools</h2>
+  </div>
+  <div class="skills-grid" id="skills-container">
+    <span class="skill-tag">Python</span>
+    <span class="skill-tag">HTML / CSS</span>
+    <span class="skill-tag">JavaScript</span>
+    <span class="skill-tag">C / C++</span>
+    <span class="skill-tag">Java</span>
+    <span class="skill-tag">Linux</span>
+    <span class="skill-tag">Git & GitHub</span>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- About -->
+<section id="about">
+  <div class="section-header">
+    <h2>About</h2>
+  </div>
+  <div class="about-grid">
+    <div class="info-card">
+      <h3>Currently</h3>
+      <p><span class="status-dot"></span>Looking for my first engineering role. Open to full-time positions in backend, full-stack, or anything that involves interesting problems.</p>
+    </div>
+    <div class="info-card">
+      <h3>Background</h3>
+      <p>Graduate Software Engineer with a passion for building things that are both well-crafted and genuinely useful. I enjoy learning deeply and taking on new challenges.</p>
+    </div>
+    <div class="info-card">
+      <h3>Location</h3>
+      <p>Based in Australia 🌏<br>Open to remote opportunities worldwide.</p>
+    </div>
+    <div class="info-card">
+      <h3>Contact</h3>
+      <p>
+        <a href="https://github.com/lemon837" target="_blank">github.com/lemon837</a><br>
+        <a href="https://www.linkedin.com/in/fred-leman-1284372bb" target="_blank">linkedin.com/in/fred-leman</a><br>
+        <a href="mailto:fredleman8@gmail.com">fredleman8@gmail.com</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="footer-left">© 2026 Fred Leman</span>
+  <div class="footer-links">
+    <a href="https://github.com/lemon837" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/fred-leman-1284372bb" target="_blank">LinkedIn</a>
+    <a href="mailto:fredleman8@gmail.com">Email</a>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const LANG_COLORS = {
+  JavaScript: '#f1e05a', TypeScript: '#3178c6', Python: '#3572A5',
+  Java: '#b07219', 'C++': '#f34b7d', C: '#555555', 'C#': '#178600',
+  Go: '#00ADD8', Rust: '#dea584', Ruby: '#701516', Swift: '#F05138',
+  Kotlin: '#A97BFF', HTML: '#e34c26', CSS: '#563d7c', Shell: '#89e051',
+  Vue: '#41b883', Dart: '#00B4AB', Scala: '#c22d40', default: '#9C9690'
+};
+
+const DEFAULT_SKILLS = [];
+
+function langColor(lang) {
+  return LANG_COLORS[lang] || LANG_COLORS.default;
+}
+
+async function loadGitHub() {
+  try {
+    const res = await fetch('https://api.github.com/users/lemon837/repos?sort=updated&per_page=12&type=owner');
+    if (!res.ok) throw new Error('fetch failed');
+    const repos = await res.json();
+
+    // Collect languages for skills — now hardcoded, skip auto-population
+
+    // Filter out forks, sort by stars then updated
+    const filtered = repos
+      .filter(r => !r.fork && r.name !== 'lemon837')
+      .sort((a, b) => b.stargazers_count - a.stargazers_count || new Date(b.updated_at) - new Date(a.updated_at))
+      .slice(0, 6);
+
+    const container = document.getElementById('projects-container');
+    container.className = 'projects-grid';
+
+    if (filtered.length === 0) {
+      container.innerHTML = `<p style="color:var(--ink-lighter);font-size:0.9rem;grid-column:1/-1;">No public repositories yet — check back soon!</p>`;
+      return;
+    }
+
+    container.innerHTML = filtered.map(repo => {
+      const desc = repo.description || 'No description provided.';
+      const lang = repo.language;
+      const stars = repo.stargazers_count;
+      const updated = new Date(repo.updated_at).toLocaleDateString('en-AU', { month: 'short', year: 'numeric' });
+
+      return `
+        <a class="project-card" href="${repo.html_url}" target="_blank" rel="noopener">
+          <div class="project-header">
+            <span class="project-name">${repo.name}</span>
+            <span class="project-arrow">↗</span>
+          </div>
+          <p class="project-desc">${desc}</p>
+          <div class="project-footer">
+            ${lang ? `<span class="lang-badge"><span class="lang-dot" style="background:${langColor(lang)}"></span>${lang}</span>` : ''}
+            ${stars > 0 ? `<span class="star-count">★ ${stars}</span>` : ''}
+            <span style="font-size:0.72rem;color:var(--ink-lighter);margin-left:${stars > 0 ? '0' : 'auto'}">Updated ${updated}</span>
+          </div>
+        </a>
+      `;
+    }).join('');
+
+  } catch (e) {
+    const container = document.getElementById('projects-container');
+    container.className = 'projects-grid';
+    container.innerHTML = `
+      <div class="project-card" style="grid-column:1/-1;cursor:default;pointer-events:none;">
+        <p class="project-desc">Could not load projects. Visit <a href="https://github.com/lemon837" target="_blank" style="color:var(--accent)">github.com/lemon837</a> directly.</p>
       </div>
-      <h4 class="m-4">Who is Fred?</h3>
-      <div id="intro" class="container-md m-3 p-3 rounded-3">
-        This is a description of who I am and what my major interests/skills are. 
-        This is a description of who I am and what my major interests/skills are. 
-        This is a description of who I am and what my major interests/skills are.
-        This is a description of who I am and what my major interests/skills are.
-        This is a description of who I am and what my major interests/skills are.
-        This is a description of who I am and what my major interests/skills are.
-      </div>
-      <h4 class="m-4">Projects</h4>
-      <div class="container mt-4">
-        <div class="scroll-container">
-          <div class="pane">
-            <h5>Project 1</h5>
-            <p>Some content here.</p>
-          </div>
-          <div class="pane">
-            <h5>Project 2</h5>
-            <p>More content goes here.</p>
-          </div>
-          <div class="pane">
-            <h5>Project 3</h5>
-            <p>Even more information.</p>
-          </div>
-          <div class="pane">
-            <h5>Project 4</h5>
-            <p>Different section info.</p>
-          </div>
-          <div class="pane">
-            <h5>Project 5</h5>
-            <p>Final bit of content.</p>
-          </div>
-        </div>
-      </div>
-    </main>
+    `;
+  }
+}
 
-    <footer>
+loadGitHub();
 
-    </footer>
+// Scroll indicator
+const indicator = document.getElementById('scrollIndicator');
+const fill = document.getElementById('scrollFill');
+const label = document.getElementById('scrollLabel');
 
-    <!-- Bootstrap JavaScript Libraries -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+const sections = [
+  { id: 'hero',     name: 'Intro' },
+  { id: 'projects', name: 'Projects' },
+  { id: 'skills',   name: 'Skills' },
+  { id: 'about',    name: 'About' },
+];
+
+function onScroll() {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+
+  fill.style.height = Math.min(progress, 100) + '%';
+
+  // Show after scrolling 80px
+  if (scrollTop > 80) {
+    indicator.classList.add('visible');
+  } else {
+    indicator.classList.remove('visible');
+  }
+
+  // Update label based on current section
+  let current = sections[0].name;
+  for (const s of sections) {
+    const el = document.getElementById(s.id);
+    if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.5) {
+      current = s.name;
+    }
+  }
+  if (label.textContent !== current) {
+    label.style.opacity = '0';
+    setTimeout(() => {
+      label.textContent = current;
+      label.style.opacity = '1';
+    }, 150);
+  }
+}
+
+window.addEventListener('scroll', onScroll, { passive: true });
+</script>
+
+</body>
 </html>
